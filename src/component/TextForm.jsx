@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 
 export default function TextForm(props) {
 
+  
   let handleUpClick = () => {
     // console.log('upper case was click' + text);
     let newText = text.toUpperCase();
@@ -33,14 +34,14 @@ export default function TextForm(props) {
           <textarea className="form-control" value={text} onChange={handleOnChange} style={{ backgroundColor: props.mode === 'dark' ? '#211410' : 'white', color: props.mode === 'dark' ? 'white' : 'black' }} 
             id="myBox" rows="8"></textarea>
         </div>
-        <button className='btn btn-primary mx-2' onClick={handleUpClick}>Convert Uppercase</button>
-        <button className='btn btn-danger mx-2' onClick={handleLoClick}>Convert Lowercase</button>
+        <button className='btn btn-primary mx-2 my-1' disabled={text.length===0} onClick={handleUpClick}>Convert Uppercase</button>
+        <button className='btn btn-danger mx-2 my-1' disabled={text.length===0} onClick={handleLoClick}>Convert Lowercase</button>
 
       </div>
 
       <div className="container my-3" style={{ color: props.mode === 'dark' ? 'white' : 'black' }}>
         <h2>Your text summary</h2>
-        <p>  {text.split(' ').length} words and {text.length} characters</p>
+        <p>  {text.split(/\s+/).filter((element)=>{return element.length!==0}).length} words and {text.length} characters</p>
         <h2>Preview</h2>
         <p>{text.length>0?text:'Enter somthing in the text box above to preview it'}</p>
       </div>
